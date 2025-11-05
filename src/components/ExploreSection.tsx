@@ -9,6 +9,7 @@ import FloatingCircles from "./FloatingCircles";
 import sproutImage from "@/assets/sprout-seed.png";
 import { domains, Domain } from "@/data/domains";
 import { DomainNode } from "@/components/learning-tree/DomainNode";
+import InternshipCards from "@/components/InternshipCards";
 const offerings = [{
   id: "courses",
   icon: GraduationCap,
@@ -233,6 +234,9 @@ const ExploreSection = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Internship Cards Section */}
+      <InternshipCards />
     </>;
 };
 export default ExploreSection;

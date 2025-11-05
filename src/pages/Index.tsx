@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import ExploreSection from "@/components/ExploreSection";
 import Events from "@/components/Events";
 import Courses from "@/components/Courses";
-import InternshipCards from "@/components/InternshipCards";
 import CTASection from "@/components/CTASection";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
@@ -29,9 +28,6 @@ const Index = () => {
         </section>
         <section id="courses">
           <Courses />
-        </section>
-        <section id="internships">
-          <InternshipCards />
         </section>
         
         <section id="faq-contact" className="py-16 px-4 bg-gradient-subtle">
