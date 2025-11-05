@@ -199,6 +199,35 @@ export type Database = {
         }
         Relationships: []
       }
+      group_members: {
+        Row: {
+          group_id: string
+          id: string
+          joined_at: string | null
+          user_id: string
+        }
+        Insert: {
+          group_id: string
+          id?: string
+          joined_at?: string | null
+          user_id: string
+        }
+        Update: {
+          group_id?: string
+          id?: string
+          joined_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "workshop_groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       internship_applications: {
         Row: {
           applied_at: string | null
@@ -321,6 +350,57 @@ export type Database = {
         }
         Relationships: []
       }
+      team_task_submissions: {
+        Row: {
+          file_urls: string[] | null
+          group_id: string
+          id: string
+          judge_comment: string | null
+          score: number | null
+          status: string | null
+          submitted_at: string | null
+          task_id: string
+          text_submission: string | null
+        }
+        Insert: {
+          file_urls?: string[] | null
+          group_id: string
+          id?: string
+          judge_comment?: string | null
+          score?: number | null
+          status?: string | null
+          submitted_at?: string | null
+          task_id: string
+          text_submission?: string | null
+        }
+        Update: {
+          file_urls?: string[] | null
+          group_id?: string
+          id?: string
+          judge_comment?: string | null
+          score?: number | null
+          status?: string | null
+          submitted_at?: string | null
+          task_id?: string
+          text_submission?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_task_submissions_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "workshop_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_task_submissions_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "workshop_tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_courses: {
         Row: {
           course_id: string
@@ -411,6 +491,165 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "user_workshops_workshop_id_fkey"
+            columns: ["workshop_id"]
+            isOneToOne: false
+            referencedRelation: "workshops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workshop_groups: {
+        Row: {
+          created_at: string | null
+          group_code: string
+          group_name: string
+          id: string
+          logo_url: string | null
+          slogan: string | null
+          updated_at: string | null
+          workshop_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          group_code: string
+          group_name: string
+          id?: string
+          logo_url?: string | null
+          slogan?: string | null
+          updated_at?: string | null
+          workshop_id: string
+        }
+        Update: {
+          created_at?: string | null
+          group_code?: string
+          group_name?: string
+          id?: string
+          logo_url?: string | null
+          slogan?: string | null
+          updated_at?: string | null
+          workshop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workshop_groups_workshop_id_fkey"
+            columns: ["workshop_id"]
+            isOneToOne: false
+            referencedRelation: "workshops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workshop_judges: {
+        Row: {
+          assigned_at: string | null
+          id: string
+          user_id: string
+          workshop_id: string
+        }
+        Insert: {
+          assigned_at?: string | null
+          id?: string
+          user_id: string
+          workshop_id: string
+        }
+        Update: {
+          assigned_at?: string | null
+          id?: string
+          user_id?: string
+          workshop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workshop_judges_workshop_id_fkey"
+            columns: ["workshop_id"]
+            isOneToOne: false
+            referencedRelation: "workshops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workshop_leaderboard: {
+        Row: {
+          group_id: string
+          id: string
+          rank: number | null
+          tasks_completed: number | null
+          total_score: number | null
+          updated_at: string | null
+          workshop_id: string
+        }
+        Insert: {
+          group_id: string
+          id?: string
+          rank?: number | null
+          tasks_completed?: number | null
+          total_score?: number | null
+          updated_at?: string | null
+          workshop_id: string
+        }
+        Update: {
+          group_id?: string
+          id?: string
+          rank?: number | null
+          tasks_completed?: number | null
+          total_score?: number | null
+          updated_at?: string | null
+          workshop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workshop_leaderboard_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "workshop_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "workshop_leaderboard_workshop_id_fkey"
+            columns: ["workshop_id"]
+            isOneToOne: false
+            referencedRelation: "workshops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workshop_tasks: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          points: number | null
+          task_order: number
+          timer_minutes: number | null
+          title: string
+          updated_at: string | null
+          workshop_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          points?: number | null
+          task_order: number
+          timer_minutes?: number | null
+          title: string
+          updated_at?: string | null
+          workshop_id: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          points?: number | null
+          task_order?: number
+          timer_minutes?: number | null
+          title?: string
+          updated_at?: string | null
+          workshop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workshop_tasks_workshop_id_fkey"
             columns: ["workshop_id"]
             isOneToOne: false
             referencedRelation: "workshops"
