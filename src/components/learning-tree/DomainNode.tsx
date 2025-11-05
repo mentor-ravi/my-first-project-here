@@ -363,6 +363,26 @@ export const DomainNode = ({
 
           {/* Sprout Image - replacing nut styling */}
           <div className="flex flex-col items-center gap-2 right-0">
+            <motion.div
+              className="relative flex items-center justify-center"
+              style={{
+                width: "min(90px, 16vw)",
+                height: "min(90px, 16vw)",
+              }}
+              whileHover={{
+                scale: 1.05,
+              }}
+              animate={isSelected ? {
+                scale: [1, 1.08, 1],
+              } : {}}
+              transition={isSelected ? {
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              } : {}}
+            >
+              {/* Sprout Image removed */}
+            </motion.div>
 
             {/* Domain info below the seed */}
             <motion.div 
