@@ -205,6 +205,12 @@ const ExploreSection = () => {
             </motion.div>
           </div>
 
+          {/* Domain Seeds Organic Layout */}
+          <div className="relative w-full h-[450px] md:h-[650px] max-w-5xl md:max-w-7xl mx-auto">
+
+
+            {domains.map(domain => <DomainNode key={domain.id} domain={domain} isSelected={false} isHidden={false} onClick={() => handleDomainClick(domain)} onHoverChange={isHovered => setHoveredDomainId(isHovered ? domain.id : null)} zIndex={getZIndex(domain.id)} />)}
+          </div>
           
           {/* Explore More Link */}
           <motion.div initial={{
