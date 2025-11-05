@@ -381,15 +381,7 @@ export const DomainNode = ({
                 ease: "easeInOut",
               } : {}}
             >
-              {/* Sprout Image */}
-              <img 
-                src={sproutImage} 
-                alt={`${domain.name} seed`}
-                className="w-full h-full object-contain drop-shadow-2xl"
-                style={{
-                  filter: "drop-shadow(0 10px 25px rgba(0,0,0,0.3))",
-                }}
-              />
+              {/* Sprout Image removed */}
             </motion.div>
 
             {/* Domain info below the seed */}
